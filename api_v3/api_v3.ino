@@ -60,8 +60,9 @@ const char gprsPass[] = "true";
 const char wifiSSID[] = "mi10tpro";
 const char wifiPass[] = "123456789";
 // Server details
-const char server[] = "google.com";
-const char resource[] = "/";
+const char server[] = "console.firebase.google.com";
+const char resource[] = "/u/0/project/smartbut-8e052/database/smartbut-8e052-default-rtdb/data";
+
 //const char server[]   = "www.google.com";
 //const char resource[] = "/";
 const int  port       = 443;
@@ -100,7 +101,7 @@ TinyGsmClientSecure client(modem);
 #endif
 
 //HttpClient  http(client, server, port);
-
+String apiKeyValue = "EHfdf2KtFWC5WaizFIk8pxOQ9L3bxYgmLmAnR6Bg";
 #define MODEM_RST 5
 #define MODEM_PWKEY 4
 #define MODEM_POWER_ON 23
@@ -196,7 +197,7 @@ void loop() {
 //  // Make a HTTP GET request:
 //  String payload = client.readString();
 //  Serial.println(payload);
-
+//   client +=+ FIREBASE_AUTH;
   HttpClient  http(client, server, port);
 
  SerialMon.print(F("Performing HTTPS GET request... "));
@@ -204,7 +205,7 @@ void loop() {
   SerialMon.println(resource);
   int err = http.get(resource);
   if (err != 0) {
-    SerialMon.println(F("failed to connect"));
+    SerialMon.println(F("failed to connect1"));
     SerialMon.println(err);
     delay(10000);
     return;

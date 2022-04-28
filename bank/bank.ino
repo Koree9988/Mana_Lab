@@ -55,12 +55,6 @@ const String serverName = "https://smartbus-7lpin5zc7a-as.a.run.app/api/v1/signa
 
 // the following variables are unsigned longs because the time, measured in
 // milliseconds, will quickly become a bigger number than can be stored in an int.
-unsigned long lastTime = 0;
-// Timer set to 10 minutes (600000)
-//unsigned long timerDelay = 600000;
-// Set timer to 5 seconds (500000)
-unsigned long timerDelay = 500000;
-
 // TinyGSM Client for Internet connection
 TinyGsmClient client(modem);
 
@@ -73,9 +67,9 @@ void setup() {
   digitalWrite(MODEM_RST, HIGH);
   digitalWrite(MODEM_POWER_ON, HIGH);
   SerialMon.println("Initializing modem...");
-  modem.restart();
+ 
   // use modem.init() if you don't need the complete restart
-
+  modem.init();
    if (strlen(simPIN) && modem.getSimStatus() != 3 ) {
     modem.simUnlock(simPIN);
   }
