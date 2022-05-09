@@ -12,6 +12,8 @@ String arrival = "0";
 AsyncWebServer server1(80);
 
 // Your GPRS credentials (leave empty, if not needed)
+// Can apn depend on sim like Ais,Dtac,True
+// This one is use true sim
 const char apn[]      = "internet"; // APN (example: internet.vodafone.pt) use https://wiki.apnchanger.org
 const char gprsUser[] = "true"; // GPRS User
 const char gprsPass[] = "true"; // GPRS Password
@@ -191,16 +193,7 @@ void loop() {
       String str = String(logo);
       SerialMon.println(str);
       arrival = jsonExtract(str, "arrival");
-      int arrivalint = arrival.toInt();
-      Serial.printf("%02d",arrivalint);
-
-      
-//      int arrivalint = arrival.toInt();
-////      Serial.println(arrivalint,2);
-//      char *result;
-//      sprintf(result, "%02d", arrivalint);
-//      Serial.println(result);
-
+      SerialMon.printf("%s\n",arrival);
         server1.on("/arrival", HTTP_GET, [](AsyncWebServerRequest *request){
         request->send_P(200, "text/plain", arrival.c_str());
       });
