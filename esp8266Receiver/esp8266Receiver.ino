@@ -74,7 +74,8 @@ void getTime(char *psz, bool f = true)
   m = millis()/1000;
   h = (m/60) % 24;
   m %= 60;
-  sprintf(psz, "%s", arrival);
+  int arrivalint = arrival.toInt();
+  sprintf(psz, "%02d", arrivalint);
 }
 
 void createHString(char *pH, char *pL)
